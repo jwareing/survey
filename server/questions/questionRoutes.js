@@ -11,6 +11,6 @@ module.exports = function (app) {
   // app.param('tags', productController.productByTags);
 
   app.route('/')
-    .get(questionController.showQuestion);
+    .get(questionController.showQuestions);
 
 };
