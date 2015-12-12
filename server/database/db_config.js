@@ -15,7 +15,8 @@ var Question = orm.define('Question', {
 
 var Answer = orm.define('Answer', {
   answerText: { type: Sequelize.STRING(200), allowNull: false},
-  count: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0}
+  score: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0},
+  order: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0}
 });
 
 Answer.belongsTo(Question);

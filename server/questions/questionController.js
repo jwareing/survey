@@ -1,16 +1,26 @@
 var database = require('../database/db_config.js');
+var Answer = database.Answer;
+var Question = database.Question;
 // var Promise = require('bluebird');
-// var _ = require('underscore');
+var _ = require('underscore');
 
 module.exports = {
 
   addQuestion: function (req, res, next) {
-    return database.Question.create({
+    database.Question.create({
       questionText: req.body.questionText
     })
     .then(function (newQuestion) {
       console.log(newQuestion);
       res.json({newQuestion: newQuestion});
+      _.each(req.body.answerList, function(answer, index) {
+        database.Answer.create({
+          answerText: answer,
+          order: index,
+          score: 0,
+          QuestionId: newQuestion.dataValues.id
+        })
+      })
     })
     .catch(function (error) {
       res.status(400).send('Error on database: ' + error);
