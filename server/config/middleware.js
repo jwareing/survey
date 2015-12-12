@@ -13,7 +13,7 @@ module.exports = function (app, express) {
   app.use(express.static(__dirname + '/../../client')); //serve static files in client folder
 
 
-  app.use('/api/quesions', questionRouter); // use user router for all user request
+  app.use('/api/questions', questionRouter); // use user router for all user request
 
   // authentication middleware used to decode token and made available on the request
   //app.use('/api/links', helpers.decode);

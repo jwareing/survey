@@ -10,11 +10,11 @@ var orm = new Sequelize('surveyDB', 'root', '', {
 ////////////////////////////////////
 
 var Question = orm.define('Question', {
-  text: { type: Sequelize.STRING(200), allowNull: false}
+  questionText: { type: Sequelize.STRING(200), allowNull: false}
 });
 
 var Answer = orm.define('Answer', {
-  text: { type: Sequelize.STRING(200), allowNull: false},
+  answerText: { type: Sequelize.STRING(200), allowNull: false},
   count: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0}
 });
 

@@ -5,7 +5,22 @@ var database = require('../database/db_config.js');
 module.exports = {
 
   addQuestion: function (req, res, next) {
-
+    return database.Question.create({
+      questionText: req.body.questionText
+    })
+    .then(function (newQuestion) {
+      console.log(newQuestion);
+      res.json({newQuestion: newQuestion});
+    })
+    .catch(function (error) {
+      res.status(400).send('Error on database: ' + error);
+    });
+    // .then(function (newQuestion) {
+    //   res.json({newQuestion: newQuestion});
+    //   // database.Answer.create({
+    //   //   text: req.body.questionText
+    //   // })
+    // })
   },
 
   showQuestions: function (req, res, next) {
