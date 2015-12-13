@@ -11,6 +11,7 @@ module.exports = function (app, express) {
   app.use(bodyParser.urlencoded({extended: true})); //allows for rich objects and arrays to be encoded into the URL-encoded format
   app.use(bodyParser.json()); //returns middleware that only parses json
   app.use(express.static(__dirname + '/../../client')); //serve static files in client folder
+  app.use(express.static(__dirname + '/../../node_modules/angular/angular.min.js'));
 
 
   app.use('/api/questions', questionRouter); // use user router for all user request

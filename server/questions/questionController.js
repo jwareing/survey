@@ -13,7 +13,7 @@ module.exports = {
     .then(function (newQuestion) {
       console.log(newQuestion);
       res.json({newQuestion: newQuestion});
-      _.each(req.body.answerList, function(answer, index) {
+      _.each(req.body.answerList, function (answer, index) {
         database.Answer.create({
           answerText: answer,
           order: index,
@@ -25,17 +25,62 @@ module.exports = {
     .catch(function (error) {
       res.status(400).send('Error on database: ' + error);
     });
-    // .then(function (newQuestion) {
-    //   res.json({newQuestion: newQuestion});
-    //   // database.Answer.create({
-    //   //   text: req.body.questionText
-    //   // })
-    // })
   },
 
-  showQuestions: function (req, res, next) {
+  getQuestion: function (req, res, next) {
+    var foundQuestion = {};
+    console.log("Got a request for this question: " + JSON.stringify(req.headers));
+    Question.findById(req.headers.questionid)
+    .then(function(question){
+      foundQuestion.question = question;
+      console.log("the QUESTION ID IS " + question.get("id"));
+      Answer.findAll({
+        where: {QuestionId: question.get("id")}
+      })
+      .then(function(results){
+        foundQuestion.answers = results;
+        res.send(foundQuestion);
+      })
+    })
+    .catch(function (error) {
+      res.status(400).send('Error getting question: ' + error);
+    });
+  },
 
+  getAllQuestions: function (req, res, next) {
+    var allQuestions;
+    var allAnswers;
+    Question.findAll()
+    .then(function (questions){
+      allQuestions = questions;
+      return Answer.findAll();
+    })
+    .then(function (answers) {
+      allAnswers = answers;
+      res.send({
+        questions: allQuestions,
+        answers: allAnswers
+      });
+    })
+    .catch(function (error) {
+      res.status(400).send('Error getting question: ' + error);
+    });
+  },
+
+  addScore: function (req, res, next) {
+    Answer.findById(req.body.answerId)
+    .then(function(answer) {
+      return answer.increment('score', {by: 1})
+    })
+    .then(function (result) {
+      res.send(result.get("answerText"));
+    })
+    .catch(function (error) {
+      res.status(400).send('Error adding score: ' + error);
+    });
   }
+
+
 
   // // retrieve all the products from the database
   // allProducts: function (req, res, next) {

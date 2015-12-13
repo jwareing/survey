@@ -11,7 +11,11 @@ module.exports = function (app) {
   // app.param('tags', productController.productByTags);
 
   app.route('/')
-    .get(questionController.showQuestions)
+    .get(questionController.getQuestion)
     .post(questionController.addQuestion);
+
+  app.route('/answers')
+    .post(questionController.addScore)
+    .get(questionController.getAllQuestions);
 
 };
