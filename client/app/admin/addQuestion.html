@@ -1,0 +1,26 @@
+<div id="addQuestion">
+  <h1>Add a question with answers below:</h1>
+  
+    <div>
+      <h2 ng-show="questionText.length>0">{{questionText}}</h2>
+      <input type="text"
+             ng-model="questionText"
+             class="form-control"
+             maxlength="200"
+             placeholder="add a question here"
+             required>
+    </div>
+
+    <div>
+      <h3 ng-repeat="answer in answerList track by $index">{{answer}}</h3>
+      <h3> answerList is {{answerList}}</h3>
+      <input type="text"
+             ng-model="currentAnswer"
+             maxlength="200"
+             placeholder="add a question here"
+             >
+             <span>
+               <button type='button' ng-click='addAnswer()'>Add this answer</button>
+             </span>
+    </div>
+</div>

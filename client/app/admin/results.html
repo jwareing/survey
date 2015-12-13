@@ -1,0 +1,9 @@
+<div id="surveyResults">
+  <h1>All questions with answers below:</h1>
+  <div ng-repeat="question in allQuestions">
+    <h2>{{question.questionText}}</h2>
+    <h3 ng-repeat="answer in allAnswers | filter: {QuestionId: question.id}">
+      {{answer.answerText}} has been chosen by {{answer.score}} users
+    </h3>
+  </div>
+</div>

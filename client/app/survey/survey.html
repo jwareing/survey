@@ -1,0 +1,8 @@
+<div id="Question">
+  <h1>Current question is:</h1>
+  <h1>{{ currentQuestion}}</h1>
+  <h1>Current answers are:</h1>
+  <h1 ng-repeat="answer in currentAnswers"> {{answer.answerText}}
+    <button ng-click="giveAnswer(answer.id)">vote</button>
+  </h1>
+</div>
