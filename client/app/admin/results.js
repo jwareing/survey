@@ -35,6 +35,11 @@
       }
     };
 
+    //removes admin item from localStorage and redirects to survey
+    $scope.signOut = function () {
+      $window.localStorage.removeItem("admin");
+      $location.path('/');
+    };
 
     $scope.checkAdmin();
     $scope.getAllQuestions();
