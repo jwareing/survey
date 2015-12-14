@@ -14,13 +14,21 @@
 - Angular
 - See package.json for all dependencies
 
-## Running the App
+## Downloading the app
 
-From within the root directory:
+In your command line, navigate to the folder where you want to download the app.
+
+Then run:
+
+```sh
+git clone https://github.com/jwareing/survey.git
+```
+
+## Running the App
 
 Make sure you have MySQL installed and no restrictions on your MySQL root user.
 
-Then:
+Then, within the root directory, run the following in your command line:
 
 ```sh
 npm install
