@@ -35,9 +35,46 @@ Question.sync()
     console.log('Error in database sync:' + error);
   });
 
+Question.findOrCreate({
+  where: {
+    questionText: 'Should you hire John?'
+  }
+})
+.then(function (created) {
+  var myId = created[0]["id"];
+  Answer.findOrCreate({
+    where: {
+      answerText: "Definitely",
+      order: 0,
+      score: 1,
+      QuestionId: myId
+    }
+  })
+  .then(function () {
+    Answer.findOrCreate({
+      where: {
+        answerText: "Immediately",
+        order: 1,
+        score: 3,
+        QuestionId: myId
+      }
+    })
+    .then(function () {
+      Answer.findOrCreate({
+        where: {
+          answerText: "Probably twice",
+          order: 2,
+          score: 12,
+          QuestionId: myId
+        }
+      })
+    })
+  })
+});
 ////////////////////////////////////
 ////// Export each model
 ////////////////////////////////////
+
 
 exports.Question = Question;
 exports.Answer = Answer;
