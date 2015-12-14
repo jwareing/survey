@@ -1,0 +1,26 @@
+#mySurvey {
+  margin: 0;
+  font-family: arial, sans-serif;
+  background-color: lightgray; }
+
+.answer {
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.answerText {
+  padding-left: 10px;
+}
+
+.questionCard {
+  background-color: lightyellow;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.formButton {
+  margin: 10px;
+}

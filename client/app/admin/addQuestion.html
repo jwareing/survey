@@ -1,26 +1,41 @@
 <div id="addQuestion">
-  <h1>Add a question with answers below:</h1>
-  
-    <div>
-      <h2 ng-show="questionText.length>0">{{questionText}}</h2>
+  <div class="page-header">
+    <h2>Add a question, then add some answers!</h2>
+  </div>
+
+  <div class="row questionCard">
+    <h2 ng-show="hasQuestion">{{questionText}}</h2>
+    <div ng-show="!hasQuestion">
       <input type="text"
              ng-model="questionText"
              class="form-control"
              maxlength="200"
-             placeholder="add a question here"
+             placeholder="type your question here"
              required>
+      
+      <button class="btn btn-primary formButton"type='button' ng-click='addQuestion()'>Add this question</button> 
     </div>
 
-    <div>
-      <h3 ng-repeat="answer in answerList track by $index">{{answer}}</h3>
-      <h3> answerList is {{answerList}}</h3>
+    <div ng-show="hasQuestion">
+      <div class="answer" ng-repeat="answer in answerList track by $index">
+        <span>{{answer}}</span>
+      </div>
+      
       <input type="text"
              ng-model="currentAnswer"
+             class="form-control"
              maxlength="200"
-             placeholder="add a question here"
+             placeholder="type an answer here"
              >
-             <span>
-               <button type='button' ng-click='addAnswer()'>Add this answer</button>
-             </span>
+      <span>
+        <button class="btn btn-primary formButton" type='button' ng-click='addAnswer()'>Add this answer</button>
+      </span>
     </div>
+
+    <div ng-show="hasAnswers">
+      <hr>
+      <button class="btn btn-primary formButton" type='button' ng-click='submitQuestion()'>I'm ready, submit this question!</button>
+    </div>
+
+  </div>
 </div>

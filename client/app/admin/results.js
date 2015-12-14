@@ -2,12 +2,13 @@
   'use strict';
 
   angular.module('app')
-  .controller('ResultsController', ['$scope', '$http', '$window',
-  function ($scope, $http, $window) {
+  .controller('ResultsController', ['$scope', '$http', '$window', '$location',
+  function ($scope, $http, $window, $location) {
 
     $scope.allQuestions;
     $scope.allAnswers;
 
+    //Gets all questions and their answers from the server
     $scope.getAllQuestions = function() {
       return $http({
         method: 'GET',
@@ -21,6 +22,21 @@
       })
     };
 
+    //Checks if user has correct admin item in localStorage, redirects if not
+    $scope.checkAdmin = function () {
+      if (JSON.parse($window.localStorage.getItem("admin")) !== true){
+        var password = prompt("What is admin password?");
+        if (password !== "admin") {
+          alert("Sorry, wrong password! Sending you back to the survey.")
+          $location.path('/');
+        } else {
+          $window.localStorage.setItem("admin", JSON.stringify(true));
+        }
+      }
+    };
+
+
+    $scope.checkAdmin();
     $scope.getAllQuestions();
 
   }]);

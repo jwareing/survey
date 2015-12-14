@@ -1,8 +1,17 @@
 <div id="Question">
-  <h1>Current question is:</h1>
-  <h1>{{ currentQuestion}}</h1>
-  <h1>Current answers are:</h1>
-  <h1 ng-repeat="answer in currentAnswers"> {{answer.answerText}}
-    <button ng-click="giveAnswer(answer.id)">vote</button>
-  </h1>
+  <div class="page-header">
+    <h2>Answer a question!</h2>
+    <span> Click the number next to the answer to cast your vote.</span>
+  </div>
+
+  <div class="row">
+    <div class="questionCard">
+    <h2>{{ currentQuestion.questionText}}</h2>
+    <div class="answer" ng-repeat="answer in currentAnswers">
+      <button class="btn btn-primary btn-sm" ng-click="giveAnswer(answer.id)">{{answer.order+1}}</button>
+      <span class="answerText">{{answer.answerText}}</span>
+    </div>
+    </div>
+
+  </div>
 </div>
