@@ -1,9 +1,7 @@
 var express = require('express');
-// var path = require('path');
 var app = express();
 
-// app.use(favicon(__dirname + '/public/favicon.ico'));
-// app.use('/public', express.static(path.join(__dirname, 'public')));
+//Initializes server using express, and middleware from middleware.js
 
 require('./config/middleware.js')(app, express);
 
